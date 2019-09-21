@@ -55,7 +55,7 @@ function chercher() {
             // ["https://crisco2.unicaen.fr/des/synonymes/" + keyword, "synonymes"] //https://crisco2.unicaen.fr/des/synonymes/dépoussiérer  - difficult to retrieve because no id
 
         ]
-        // test with hibou,  tribal, aller,lancer
+        // for test set keyword to any of this word :  hibou,  tribal, aller, lancer
 
         var resultdiv = document.getElementById("result")
         resultdiv.innerText = "requete en cours";
@@ -107,16 +107,17 @@ function chercher() {
                         // alert(allresult)
                         results.push(allresult);
                     }
+
+                    // update the DOM 
+                    // results[1].join is not a function at XMLHttpRequest.http.onreadystatechange
+                    // Cannot read property 'join' of undefined at XMLHttpRequest.http.onreadystatechange
                     if (results[1] == "") {
                         resultdiv.innerHTML = results[0].join(", ") + "</br></br>Pas de synonymes trouvés"
                     } else {
                         resultdiv.innerHTML = "<b>" + results[0].join(", ") + "</br></br>Synonymes:</b></br>● " + results[1].join('</br>● ')
                     }
-                    // resultdiv.innerText = results[0] + "\n\nSynonymes:\n● " + results[1].join('\n● ')
 
-                    // https://www.cnrtl.fr/morphologie/tribal
-                    // results[1].join is not a function at XMLHttpRequest.http.onreadystatechange
-                    // Cannot read property 'join' of undefined at XMLHttpRequest.http.onreadystatechange
+
 
                 } else {
                     errors.push(index);
