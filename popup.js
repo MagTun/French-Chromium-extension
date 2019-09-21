@@ -67,14 +67,14 @@ function chercher() {
             // alert(url1)
 
 
-            var http1 = new XMLHttpRequest();
+            var http = new XMLHttpRequest();
             // when readyState change this function is called 
             // readyState = 0 = UNSENT  / 1	OPENED	/ 2	HEADERS_RECEIVED / 3	LOADING	/ 4	DONE
 
-            http1.onreadystatechange = function () {
-                if (http1.readyState == 4 && http1.status == 200) {
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
                     parser = new DOMParser();
-                    var ulr1response = parser.parseFromString(http1.responseText, "text/html");
+                    var ulr1response = parser.parseFromString(http.responseText, "text/html");
                     if (index == 0) {
                         // if url = etymologie  
                         // var form = ulr1response.getElementById(item[1]).innerText
@@ -115,17 +115,17 @@ function chercher() {
                     // resultdiv.innerText = results[0] + "\n\nSynonymes:\n● " + results[1].join('\n● ')
 
                     // https://www.cnrtl.fr/morphologie/tribal
-                    // results[1].join is not a function at XMLHttpRequest.http1.onreadystatechange
-                    // Cannot read property 'join' of undefined at XMLHttpRequest.http1.onreadystatechange
+                    // results[1].join is not a function at XMLHttpRequest.http.onreadystatechange
+                    // Cannot read property 'join' of undefined at XMLHttpRequest.http.onreadystatechange
 
                 } else {
                     errors.push(index);
-                    resultdiv.innerText = "Erreur: " + index + " " + http1.readyState + "  " + http1.status;
+                    resultdiv.innerText = "Erreur: " + index + " " + http.readyState + "  " + http.status;
 
                 }
             }
-            http1.open("GET", item[0], false);
-            http1.send(null); // null = no parameters
+            http.open("GET", item[0], false);
+            http.send(null); // null = no parameters
 
 
 
